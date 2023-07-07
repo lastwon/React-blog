@@ -19,3 +19,8 @@ p {
 .home {
   display: block;
 }
+
+a {
+  text-decoration: none;
+  color: #000;
+}

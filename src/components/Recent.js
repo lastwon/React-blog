@@ -8,6 +8,9 @@ const Recent = () => {
   return (
     <section className="recent-posts">
       <div className="container">
+        <div className="section-title">
+          <h2>Recent Posts</h2>
+        </div>
         <div className="row">
           <div className="post-items">
             <Post />

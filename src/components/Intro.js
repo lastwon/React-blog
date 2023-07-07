@@ -7,6 +7,9 @@ const Intro = () => {
   return (
     <section className="intro">
       <div className="container">
+        <div className="section-title">
+          <h2>Featured posts</h2>
+        </div>
         <div className="grid-system">
           <FeaturedCard />
           <FeaturedCard />

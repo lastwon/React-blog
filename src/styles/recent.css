@@ -2,8 +2,31 @@
   padding: 100px 0;
 }
 
+.section-title {
+  border-top: 2px solid #000;
+}
+
+.section-title h2 {
+  display: inline-block;
+  font-family: "Nunito", sans-serif;
+  background-color: #000;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.0433846em;
+  padding: 4px 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
 .row {
   display: flex;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .post-items {
