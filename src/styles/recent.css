@@ -1,0 +1,101 @@
+.recent-posts {
+  padding: 100px 0;
+}
+
+.row {
+  display: flex;
+}
+
+.post-items {
+  width: 75%;
+  padding-right: 88px;
+}
+
+.post-item {
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.post-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.post-item .post-thumbnail-container {
+  flex-basis: 380px;
+  min-width: 380px;
+  width: 380px;
+  margin-bottom: 30px;
+}
+
+.post-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding-left: 15px;
+}
+
+.badge-row-two {
+  position: relative;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.badge-row-two a {
+  background: #fff;
+  border: 1px solid #000;
+  display: inline-block;
+  color: #000;
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 14px;
+  padding: 9px 15px 8px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.badge-row-two a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #000;
+  bottom: -5px;
+  left: -5px;
+  top: 5px;
+  width: 5px;
+}
+
+.badge-row-two a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #000;
+  bottom: -5px;
+  height: 5px;
+  left: 0;
+  right: 5px;
+}
+
+.post-details-container a {
+  color: #000;
+  text-decoration: none;
+}
+
+.post-details-container a:nth-child(2) h4 {
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  margin-bottom: 15px;
+}
+
+.ad-container {
+  background: #f7f7f7;
+  height: 44px;
+  width: 25%;
+}
