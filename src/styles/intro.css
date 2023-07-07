@@ -1,0 +1,129 @@
+.intro {
+  margin-bottom: 40px;
+  padding-top: 60px;
+}
+
+.grid-system {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.grid-system .list-item-featured:nth-child(1) {
+  margin-bottom: 65px;
+}
+
+.grid-system .list-item-featured:nth-child(1),
+.grid-system .list-item-featured:nth-child(2) {
+  grid-column: 1;
+}
+
+.grid-system .list-item-featured:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 0 48px;
+}
+
+.grid-system .list-item-featured:nth-child(3) h4 {
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  margin-bottom: 15px;
+}
+
+.grid-system .list-item-featured:nth-child(4) {
+  grid-row: 1;
+  margin-bottom: 65px;
+}
+
+.grid-system .list-item-featured:nth-child(4),
+.grid-system .list-item-featured:nth-child(5) {
+  grid-column: 3;
+}
+
+.list-item-featured a {
+  text-decoration: none;
+  color: #000;
+}
+
+.list-item-featured h4 {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+
+.list-item-featured p {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.post-thumbnail-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.grid-system .list-item-featured:nth-child(3) {
+  min-height: 515px;
+}
+
+.post-thumbnail-container img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.badge-row {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  transform: translateY(30%);
+}
+
+.badge-row a {
+  background: #fff;
+  border: 1px solid #000;
+  display: inline-block;
+  color: #000;
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 14px;
+  padding: 9px 15px 8px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.badge-row a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #000;
+  bottom: -5px;
+  left: -5px;
+  top: 5px;
+  width: 5px;
+}
+
+.badge-row a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #000;
+  bottom: -5px;
+  height: 5px;
+  left: 0;
+  right: 5px;
+}
