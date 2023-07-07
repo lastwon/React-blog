@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Intro from "./components/Intro";
 import Recent from "./components/Recent";
 import Featured from "./components/Featured";
+import Community from "./components/Community";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Intro />
         <Recent />
         <Featured />
+        <Community />
       </main>
     </>
   );
