@@ -1,0 +1,131 @@
+footer {
+  background-color: #000;
+  padding: 60px 0 100px;
+  color: #fff;
+}
+
+.footer-left {
+  width: 50%;
+  padding-right: 110px;
+}
+
+.footer-icon {
+  margin-bottom: 20px;
+}
+
+.footer-newsletter span {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-newsletter h2 {
+  font-family: "Nunito", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-newsletter-text {
+  margin-bottom: 25px;
+}
+
+.footer-newsletter-text p {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.form {
+  margin-bottom: 21px;
+}
+
+.form input {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  padding: 0px 0px 0px 16px;
+  letter-spacing: 0px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(180, 187, 195);
+  border-radius: 2px;
+  outline: none;
+  height: 60px;
+  width: 100%;
+}
+
+.newsletter-form button {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  height: 49px;
+  width: 152px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.footer-right {
+  width: 50%;
+  height: fit-content;
+  padding-bottom: 25px;
+}
+
+.footer-about,
+.footer-contact {
+  width: 50%;
+}
+
+.footer-about ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.footer-about li,
+.footer-contact li {
+  height: 32px;
+}
+
+.footer-about ul a,
+.footer-contact ul a {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  color: #fff;
+}
+
+.footer-about h4,
+.footer-contact h4 {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 30px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+hr {
+  width: 1px;
+  color: #707070;
+  width: 100%;
+  margin: 25px 0 30px 0;
+}
+
+.footer-copyright p {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+}

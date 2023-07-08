@@ -5,6 +5,7 @@ import Intro from "./components/Intro";
 import Recent from "./components/Recent";
 import Featured from "./components/Featured";
 import Community from "./components/Community";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Featured />
         <Community />
       </main>
+      <Footer />
     </>
   );
 }
