@@ -1,3 +1,6 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./styles/index.css";
 
 import Nav from "./components/Nav";
@@ -6,19 +9,28 @@ import Recent from "./components/Recent";
 import Featured from "./components/Featured";
 import Community from "./components/Community";
 import Footer from "./components/Footer";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   return (
-    <>
-      <Nav />
-      <main className="home">
-        <Intro />
-        <Recent />
-        <Featured />
-        <Community />
-      </main>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Nav />
+              <Intro />
+              <Recent />
+              <Featured />
+              <Community />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/create_post" element={<CreatePost />} />
+      </Routes>
+    </Router>
   );
 }
 

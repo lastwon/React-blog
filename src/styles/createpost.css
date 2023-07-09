@@ -1,0 +1,52 @@
+.create-post-container {
+  padding: 100px 0;
+}
+
+.create-post-container h1 {
+  font-family: "Nunito", sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 0 24px 0;
+}
+
+.create-post-container label {
+  display: flex;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  width: fit-content;
+  background-color: #000;
+  color: #fff;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.create-post-container input,
+textarea {
+  border: 1px solid #000;
+  background-color: #fff;
+  padding: 14px 12px;
+  margin: 0 0 16px 0;
+  outline: none;
+}
+
+.post-img {
+  align-items: center;
+}
+
+.create-post-container form button {
+  width: fit-content;
+}
+
+.error {
+  font-family: "Nunito", sans-serif;
+  background-color: red;
+  border: 1px solid #000;
+  color: #fff;
+  border-bottom: none;
+  width: fit-content;
+  padding: 8px 12px;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "../styles/nav.css";
 
@@ -31,6 +32,9 @@ const Nav = () => {
           </div>
           <div className="logo">
             <img className="logo-object" src={logo} alt="" />
+          </div>
+          <div className="create-post">
+            <Link to={"/create_post"}>Create post</Link>
           </div>
           <div className="login">
             <a href="">Login</a>
