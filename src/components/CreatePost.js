@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { ToastContainer, Slide } from "react-toastify";
+import { showSuccessToast, showErrorToast } from "./toastUtils";
+
 import "../styles/createpost.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.minimal.css";
+
+import axios from "axios";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
+  const [intro, setIntro] = useState("");
   const [body, setBody] = useState("");
+  const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -21,8 +29,16 @@ const CreatePost = () => {
       errors.title = "Title is required";
     }
 
+    if (!intro.trim()) {
+      errors.intro = "Short introduction is required";
+    }
+
     if (!body.trim()) {
       errors.body = "Post content is required";
+    }
+
+    if (!category) {
+      errors.category = "Category is required";
     }
 
     if (!image) {
@@ -41,7 +57,9 @@ const CreatePost = () => {
       try {
         const formData = new FormData();
         formData.append("title", title);
+        formData.append("intro", intro);
         formData.append("body", body);
+        formData.append("category", category);
         formData.append("image", image);
 
         await axios.post("http://localhost:8081/api/posts", formData);
@@ -50,9 +68,10 @@ const CreatePost = () => {
         setTitle("");
         setBody("");
         setImage(null);
+        showSuccessToast("Post created successfully");
       } catch (error) {
         console.error("Error creating post", error);
-        // Handle any error cases
+        showErrorToast("Error creating post");
       }
     }
   };
@@ -60,6 +79,19 @@ const CreatePost = () => {
   return (
     <>
       <Nav />
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Slide}
+        theme="dark"
+      />
       <div className="create-post-container">
         <div className="container">
           <h1>Create a post</h1>
@@ -81,6 +113,18 @@ const CreatePost = () => {
             />
 
             <div className="row">
+              <label htmlFor="title">Short introduction about post</label>
+              {errors.intro && <p className="error">{errors.intro}</p>}
+            </div>
+            <input
+              type="text"
+              id="intro"
+              value={intro}
+              onChange={(e) => setIntro(e.target.value)}
+              required
+            />
+
+            <div className="row">
               <label htmlFor="body">Post</label>
               {errors.body && <p className="error">{errors.body}</p>}
             </div>
@@ -90,6 +134,31 @@ const CreatePost = () => {
               onChange={(e) => setBody(e.target.value)}
               required
             />
+
+            <div className="row">
+              <label htmlFor="category">Select Category</label>
+              {errors.category && <p className="error">{errors.category}</p>}
+            </div>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select a category</option>
+              <option value="Architecture">Architecture</option>
+              <option value="Art">Art</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Featured">Featured</option>
+              <option value="Home">Home Furnishings</option>
+              <option value="Interior">Interior Design</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Pets">Pets</option>
+              <option value="Fashion">Style + Fashion</option>
+              <option value="Tech">Tech</option>
+              <option value="Travel">Travel</option>
+            </select>
+
             <div className="row">
               <label className="row post-img" htmlFor="image">
                 Image

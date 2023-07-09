@@ -27,10 +27,24 @@ cloudinary.config({
 // Enable CORS
 app.use(cors());
 
+// GEtting 5 recent posts from database
+app.get("/api/posts/recent", (req, res) => {
+  const query = "SELECT * FROM posts ORDER BY createdAt DESC LIMIT 5";
+
+  pool.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching recent posts from the database", error);
+      return res.status(500).json({ error: "Failed to fetch recent posts" });
+    }
+
+    res.json(results);
+  });
+});
+
 // Handle POST request to create a new post
 app.post("/api/posts", upload.single("image"), (req, res) => {
   // Extract form data from the request body
-  const { title, body } = req.body;
+  const { title, intro, body, category } = req.body;
   const imageFile = req.file;
 
   // Upload the image to Cloudinary
@@ -47,7 +61,7 @@ app.post("/api/posts", upload.single("image"), (req, res) => {
     const createdAt = new Date();
 
     // Save the post data to the MySQL database
-    const post = { title, body, imageUrl, createdAt };
+    const post = { title, intro, body, category, imageUrl, createdAt };
     pool.query("INSERT INTO posts SET ?", post, (error, results) => {
       if (error) {
         console.error("Error saving post to database", error);
