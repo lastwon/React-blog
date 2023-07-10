@@ -1,0 +1,65 @@
+.current-post {
+  padding: 60px 0;
+}
+
+.current-post-intro {
+  margin: auto auto 60px auto;
+  max-width: 1000px;
+}
+
+.current-post-intro h1 {
+  font-family: "Nunito", sans-serif;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 72px;
+  margin-bottom: 30px;
+}
+
+.decorative-line {
+  border-top: 2px solid #000;
+  height: 13px;
+  margin: 8px auto 25px;
+  text-align: center;
+}
+
+.decorative-line-center {
+  position: relative;
+  top: -12px;
+}
+
+.decorative-line-center svg {
+  vertical-align: middle;
+}
+
+.current-post-dateAndAuthor {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.image-container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.image-container img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.current-post-content {
+  margin-top: 60px;
+}
+
+.current-post-content p {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+  margin: 0 auto;
+  max-width: 800px;
+}

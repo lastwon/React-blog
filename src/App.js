@@ -10,6 +10,7 @@ import Featured from "./components/Featured";
 import Community from "./components/Community";
 import Footer from "./components/Footer";
 import CreatePost from "./components/CreatePost";
+import CurrentPost from "./components/CurrentPost";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           }
         />
         <Route path="/create_post" element={<CreatePost />} />
+        <Route path="/:postId" element={<CurrentPost />} />
       </Routes>
     </Router>
   );

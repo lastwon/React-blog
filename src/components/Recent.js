@@ -9,13 +9,18 @@ const Recent = () => {
     <section className="recent-posts">
       <div className="container">
         <div className="section-title">
-          <h2>Recent Posts</h2>
+          <h2>Trending Articles</h2>
         </div>
         <div className="row">
           <div className="post-items">
             <Post />
             <Post />
             <Post />
+            <div className="end-btn-container">
+              <button className="btn-primary large">
+                More Trending Articles
+              </button>
+            </div>
           </div>
           <div className="ad-container"></div>
         </div>

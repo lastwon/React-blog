@@ -41,6 +41,25 @@ app.get("/api/posts/recent", (req, res) => {
   });
 });
 
+app.get("/api/posts/:postId", (req, res) => {
+  const postId = req.params.postId;
+
+  const query = "SELECT * FROM posts WHERE id = ?";
+  pool.query(query, [postId], (error, results) => {
+    if (error) {
+      console.error("Error fetching post from the database", error);
+      return res.status(500).json({ error: "Failed to fetch post" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    const post = results[0];
+    res.json(post);
+  });
+});
+
 // Handle POST request to create a new post
 app.post("/api/posts", upload.single("image"), (req, res) => {
   // Extract form data from the request body

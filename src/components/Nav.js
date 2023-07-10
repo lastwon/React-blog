@@ -33,9 +33,6 @@ const Nav = () => {
           <div className="logo">
             <img className="logo-object" src={logo} alt="" />
           </div>
-          <div className="create-post">
-            <Link to={"/create_post"}>Create post</Link>
-          </div>
           <div className="login">
             <a href="">Login</a>
           </div>
