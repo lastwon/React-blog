@@ -5,12 +5,17 @@ import { Link } from "react-router-dom";
 import "../styles/nav.css";
 
 import logo from "../images/logo.png";
+import Profile from "./Profile";
 
 const Nav = () => {
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,13 +62,18 @@ const Nav = () => {
             </a>
           </div>
           <div className="logo">
-            <img className="logo-object" src={logo} alt="" />
+            <Link to={"/"}>
+              <img className="logo-object" src={logo} alt="" />
+            </Link>
           </div>
           <div className="login">
             {!isAuthenticated ? (
               <button onClick={() => loginWithRedirect()}>Log in</button>
             ) : (
-              <img src={user.picture} alt="user logo" />
+              <>
+                <img src={user.picture} alt="user logo" onClick={handleOpen} />
+                {open ? <Profile /> : ""}
+              </>
             )}
           </div>
         </div>

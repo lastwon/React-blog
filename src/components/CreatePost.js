@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, Slide } from "react-toastify";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 import { showSuccessToast, showErrorToast } from "./toastUtils";
 
 import "../styles/createpost.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
 
-import axios from "axios";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
 const CreatePost = () => {
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
   const [title, setTitle] = useState("");
   const [intro, setIntro] = useState("");
   const [body, setBody] = useState("");
@@ -61,6 +63,7 @@ const CreatePost = () => {
         formData.append("body", body);
         formData.append("category", category);
         formData.append("image", image);
+        formData.append("user", user.email);
 
         await axios.post("http://localhost:8081/api/posts", formData);
 
@@ -75,6 +78,12 @@ const CreatePost = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isAuthenticated, loginWithRedirect]);
 
   return (
     <>
