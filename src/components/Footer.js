@@ -49,7 +49,7 @@ const Footer = () => {
               <h2>Get in the Know</h2>
               <div className="footer-newsletter-text">
                 <p>
-                  You'll always hear it from Design Milk first. Our passion is
+                  You'll always hear it from Expresso first. Our passion is
                   discovering and highlighting emerging talent, and we're
                   energized by and for our community of like-minded design
                   lovers — like you!
@@ -66,7 +66,7 @@ const Footer = () => {
           <div className="row column footer-right">
             <div className="row footer-socials">
               <div className="footer-about">
-                <h4>About Design milk</h4>
+                <h4>About Expresso</h4>
                 <ul>
                   <li>
                     <a href="">About Us</a>
@@ -176,7 +176,7 @@ const Footer = () => {
             <div className="footer-copyright">
               <p>
                 Photo copyright retained by photo owners, everything else ©{" "}
-                {new Date().getFullYear()} Design Milk®.
+                {new Date().getFullYear()} Expresso®.
               </p>
             </div>
           </div>

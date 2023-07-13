@@ -1,11 +1,13 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
 import "../styles/nav.css";
 
-import logo from "../images/logo.svg";
+import logo from "../images/logo.png";
 
 const Nav = () => {
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   return (
     <header className="main-header">
       <div className="container">
@@ -34,7 +36,11 @@ const Nav = () => {
             <img className="logo-object" src={logo} alt="" />
           </div>
           <div className="login">
-            <a href="">Login</a>
+            {!isAuthenticated ? (
+              <button onClick={() => loginWithRedirect()}>Log in</button>
+            ) : (
+              <img src={user.picture} alt="user logo" />
+            )}
           </div>
         </div>
       </div>

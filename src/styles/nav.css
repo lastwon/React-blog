@@ -31,7 +31,8 @@
   min-width: 250px;
 }
 
-.menu-toggles a {
+.menu-toggles a,
+.menu-toggles button {
   color: #000;
   display: flex;
   align-items: center;
@@ -52,8 +53,8 @@
 }
 
 .logo {
-  height: 69px;
-  width: 135px;
+  height: 60px;
+  width: 400px;
 }
 
 .logo-object {
@@ -67,7 +68,7 @@
   text-align: right;
 }
 
-.login a {
+.login button {
   color: #000;
   font-size: 20px;
   font-family: "Nunito", sans-serif;
@@ -75,4 +76,12 @@
   font-weight: 400;
   line-height: 24px;
   text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.login img {
+  width: 20%;
+  border-radius: 50%;
 }

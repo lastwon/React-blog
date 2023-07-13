@@ -2,7 +2,8 @@
   padding: 100px 0;
 }
 
-.create-post-container h1 {
+.create-post-container h1,
+.login-container h1 {
   font-family: "Nunito", sans-serif;
   font-size: 46px;
   font-weight: 700;
@@ -10,7 +11,8 @@
   padding: 0 0 24px 0;
 }
 
-.create-post-container label {
+.create-post-container label,
+.login-form label {
   display: flex;
   align-items: center;
   font-family: "Nunito", sans-serif;
@@ -26,7 +28,8 @@
 
 .create-post-container input,
 textarea,
-select {
+select,
+.login-form input {
   border: 1px solid #000;
   background-color: #fff;
   padding: 14px 12px;
