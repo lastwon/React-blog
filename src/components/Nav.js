@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,32 @@ import logo from "../images/logo.png";
 
 const Nav = () => {
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const visible = prevScrollPos > currentScrollPos;
+
+      setPrevScrollPos(currentScrollPos);
+      setVisible(visible);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  const navClass = `${visible ? "shadow" : "nav-hidden"} ${
+    window.pageYOffset < 50 ? "no-shadow" : ""
+  }`;
+
   return (
-    <header className="main-header">
+    <header className={navClass}>
       <div className="container">
         <div className="main-header-inner">
           <div className="menu-toggles">
