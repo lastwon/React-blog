@@ -11,6 +11,8 @@ import Community from "./components/Community";
 import Footer from "./components/Footer";
 import CreatePost from "./components/CreatePost";
 import CurrentPost from "./components/CurrentPost";
+import EditProfile from "./components/EditProfile";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -29,8 +31,10 @@ function App() {
             </>
           }
         />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create_post" element={<CreatePost />} />
         <Route path="/:postId" element={<CurrentPost />} />
+        <Route path="/edit_profile" element={<EditProfile />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,150 @@
+.dashboard {
+  padding: 60px 0;
+}
+
+.dashboard-container {
+  border: 1px solid rgb(229, 231, 235);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.dashboard-menu {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 50px;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.dashboard-menu li a {
+  font-size: 16px;
+  color: #8d8d94;
+  margin: 0 10px;
+}
+
+.dashboard-menu li a:active,
+.dashboard-menu li a:hover,
+.dashboard-menu li .active {
+  color: #000;
+}
+
+.dashboard-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-menu ul li {
+  display: flex;
+}
+
+.dashboard-content {
+  padding: 32px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.dashboard-content h2 {
+  font-family: "Nunito", sans-serif;
+  font-size: 30px;
+}
+
+.dashboard-sections {
+  margin: 16px 0;
+  border-radius: 0.5rem;
+  width: fit-content;
+  padding: 4px;
+  background-color: #f4f4f5;
+}
+
+.dashboard-sections button {
+  font-family: "Nunito", sans-serif;
+  border: none;
+  border-radius: calc(0.5rem - 2px);
+  padding: 4px 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.dashboard-stat-cards {
+  display: flex;
+  gap: 16px;
+}
+
+.dashboard-stat-card {
+  padding: 24px;
+  width: 33.3%;
+  border: 1px solid rgb(229, 231, 235);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+}
+
+.card-content-top {
+  display: flex;
+  padding-bottom: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content-top h3 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+}
+
+.card-icon {
+  width: 20px;
+  height: 20px;
+  color: #797981;
+}
+
+.card-content-value {
+  position: relative;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+}
+
+.card-content-value::before {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 1px;
+  background: rgb(229, 231, 235);
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+
+.card-content-value::after {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 1px;
+  background: rgb(229, 231, 235);
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+
+.dashboard-overview {
+  margin-top: 16px;
+}
+
+.dashboard-chart {
+  padding: 24px;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-post-img-container {
+  width: 40px;
+  height: 40px;
+}
+
+.dashboard-post-img-container img {
+  max-width: 100%;
+  max-height: 100%;
+}

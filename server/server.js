@@ -41,6 +41,21 @@ app.get("/api/posts/recent", (req, res) => {
   });
 });
 
+// getting all specific user posts
+app.get("/api/posts/user/:usernickname", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query = "SELECT * FROM posts WHERE user = ?";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error fetching user posts from the database", error);
+      return res.status(500).json({ error: "Failed to fetch user posts" });
+    }
+
+    res.json(results);
+  });
+});
+
 app.get("/api/posts/:postId", (req, res) => {
   const postId = req.params.postId;
 

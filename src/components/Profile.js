@@ -2,9 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-import { RiSettings3Fill } from "react-icons/ri";
-import { AiFillFileAdd } from "react-icons/ai";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { MdSpaceDashboard } from "react-icons/md";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 
 import "../styles/profile.css";
@@ -17,26 +15,10 @@ const Profile = () => {
       <ul>
         <li>
           <span>
-            <RiSettings3Fill className="profile-icon" />
+            <MdSpaceDashboard className="profile-icon" />
           </span>
-          <Link to={"/edit_profile"}>Profile</Link>
+          <Link to={"/dashboard"}>Dashboard</Link>
         </li>
-        <li>
-          <span>
-            <AiFillFileAdd className="profile-icon" />
-          </span>
-          <Link to={"/create_post"}>Create Post</Link>
-        </li>
-        {isAuthenticated && user.email === "admin@admin.com" ? (
-          <li>
-            <span>
-              <MdAdminPanelSettings className="profile-icon" />
-            </span>
-            <Link to={"/"}>ADMIN Panel</Link>
-          </li>
-        ) : (
-          ""
-        )}
         <li>
           <span>
             <RiLogoutCircleRFill className="profile-icon" />
