@@ -207,13 +207,25 @@ table tbody td {
   border-radius: calc(0.5rem - 2px);
 }
 
-.pending {
+.pending,
+.accepted,
+.declined {
   padding: 2px 10px;
-  font-weight: 500;
+  font-weight: 700;
   background-color: #fff8dd;
   border-radius: calc(0.5rem - 2px);
   color: #f2cb0e;
   width: fit-content;
+}
+
+.accepted {
+  background-color: #e8fff3;
+  color: #50cd89;
+}
+
+.declined {
+  background-color: #fff5f8;
+  color: #f1416c;
 }
 
 .btn-accept,

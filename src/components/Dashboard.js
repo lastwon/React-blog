@@ -18,6 +18,7 @@ import UserPost from "./UserPost";
 const Dashboard = () => {
   const { user } = useAuth0();
   const [userPosts, setUserPosts] = useState([]);
+  const [acceptedPostsCount, setAcceptedPostsCount] = useState(0);
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -34,6 +35,21 @@ const Dashboard = () => {
     fetchUserPosts();
   }, [user.nickname]);
 
+  useEffect(() => {
+    const fetchAcceptedPostsCount = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8081/api/posts/user/${user.nickname}/accepted/count`
+        );
+        setAcceptedPostsCount(response.data.count);
+      } catch (error) {
+        console.error("Error fetching accepted posts count", error);
+      }
+    };
+
+    fetchAcceptedPostsCount();
+  }, [user.nickname]);
+
   const cards = [
     {
       id: 1,
@@ -45,7 +61,7 @@ const Dashboard = () => {
       id: 2,
       title: "Accepted Posts/Articles",
       icon: <BsCheck className="card-icon" />,
-      value: 1,
+      value: acceptedPostsCount,
     },
     {
       id: 3,

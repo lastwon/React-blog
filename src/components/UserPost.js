@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const UserPost = ({ userPosts }) => {
   const { user } = useAuth0();
-  const [status, setStatus] = useState("In Progress");
 
   const getYear = (dateString) => {
     const createdAt = new Date(dateString);
@@ -12,6 +11,17 @@ const UserPost = ({ userPosts }) => {
     const month = String(createdAt.getMonth() + 1).padStart(2, "0");
     const day = String(createdAt.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
+  };
+
+  const getStatusClass = (status) => {
+    if (status === "In Progress") {
+      return "pending";
+    } else if (status === "Accepted") {
+      return "accepted";
+    } else if (status === "Declined") {
+      return "declined";
+    }
+    return "";
   };
 
   return (
@@ -38,10 +48,19 @@ const UserPost = ({ userPosts }) => {
                 <div className="dashboard-category">{post.category}</div>
               </td>
               <td>
-                <div className="pending">{status}</div>
+                <div className={getStatusClass(post.status)}>{post.status}</div>
               </td>
               <td>{getYear(post.createdAt)}</td>
               <td>
+                {user.email === "admin@admin.com" &&
+                post.status === "In Progress" ? (
+                  <>
+                    <button className="btn-accept">Accept</button>
+                    <button className="btn-decline">Decline</button>
+                  </>
+                ) : (
+                  ""
+                )}
                 <button className="btn-review">Review</button>
               </td>
             </tr>

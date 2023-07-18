@@ -56,6 +56,23 @@ app.get("/api/posts/user/:usernickname", (req, res) => {
   });
 });
 
+// Count accepted posts for a specific user
+app.get("/api/posts/user/:usernickname/accepted/count", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query =
+    "SELECT COUNT(*) AS count FROM posts WHERE user = ? AND status = 'Approved'";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error counting accepted posts for the user", error);
+      return res.status(500).json({ error: "Failed to count accepted posts" });
+    }
+
+    const count = results[0].count;
+    res.json({ count });
+  });
+});
+
 app.get("/api/posts/:postId", (req, res) => {
   const postId = req.params.postId;
 
