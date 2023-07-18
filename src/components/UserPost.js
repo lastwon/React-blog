@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const UserPost = ({ userPosts }) => {
   const { user } = useAuth0();
+  const [status, setStatus] = useState("In Progress");
 
   const getYear = (dateString) => {
     const createdAt = new Date(dateString);
@@ -33,12 +34,15 @@ const UserPost = ({ userPosts }) => {
                 <img src={post.imageUrl} alt="img" />
               </td>
               <td>{post.title}</td>
-              <td>{post.category}</td>
-              <td>Pending...</td>
+              <td>
+                <div className="dashboard-category">{post.category}</div>
+              </td>
+              <td>
+                <div className="pending">{status}</div>
+              </td>
               <td>{getYear(post.createdAt)}</td>
               <td>
-                <button>Accept</button>
-                <button>Decline</button>
+                <button className="btn-review">Review</button>
               </td>
             </tr>
           ))}
