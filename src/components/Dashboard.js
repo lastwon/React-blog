@@ -6,7 +6,7 @@ import axios from "axios";
 import "../styles/dashboard.css";
 
 import { BsCheckAll } from "react-icons/bs";
-import { BsCheck } from "react-icons/bs";
+import { TbProgress } from "react-icons/tb";
 import { CiNoWaitingSign } from "react-icons/ci";
 import { BsLightningCharge } from "react-icons/bs";
 
@@ -19,6 +19,8 @@ const Dashboard = () => {
   const { user } = useAuth0();
   const [userPosts, setUserPosts] = useState([]);
   const [acceptedPostsCount, setAcceptedPostsCount] = useState(0);
+  const [inProgressPostsCount, setInProgressPostsCount] = useState(0);
+  const [declinePostsCount, setDeclinedPostsCount] = useState(0);
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -50,28 +52,58 @@ const Dashboard = () => {
     fetchAcceptedPostsCount();
   }, [user.nickname]);
 
+  useEffect(() => {
+    const fetchInProgressPostsCount = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8081/api/posts/user/${user.nickname}/inprogress/count`
+        );
+        setInProgressPostsCount(response.data.count);
+      } catch (error) {
+        console.error("Error fetching in progress posts count", error);
+      }
+    };
+
+    fetchInProgressPostsCount();
+  }, [user.nickname]);
+
+  useEffect(() => {
+    const fetchInDeclinedPostsCount = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8081/api/posts/user/${user.nickname}/declined/count`
+        );
+        setDeclinedPostsCount(response.data.count);
+      } catch (error) {
+        console.error("Error fetching in progress posts count", error);
+      }
+    };
+
+    fetchInDeclinedPostsCount();
+  }, [user.nickname]);
+
   const cards = [
     {
       id: 1,
-      title: "Your Total Posts/Articles",
+      title: "Accepted Posts",
       icon: <BsCheckAll className="card-icon" />,
-      value: userPosts.length,
+      value: `${acceptedPostsCount} / ${userPosts.length}`,
     },
     {
       id: 2,
-      title: "Accepted Posts/Articles",
-      icon: <BsCheck className="card-icon" />,
-      value: acceptedPostsCount,
+      title: "In Progress",
+      icon: <TbProgress className="card-icon" />,
+      value: inProgressPostsCount,
     },
     {
       id: 3,
-      title: "Denied Posts/Articles",
+      title: "Declined Posts",
       icon: <CiNoWaitingSign className="card-icon" />,
-      value: 1,
+      value: declinePostsCount,
     },
     {
       id: 4,
-      title: "Total Post/Articles Views",
+      title: "Total Posts Views",
       icon: <BsLightningCharge className="card-icon" />,
       value: 1,
     },

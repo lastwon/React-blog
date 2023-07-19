@@ -61,11 +61,47 @@ app.get("/api/posts/user/:usernickname/accepted/count", (req, res) => {
   const usernickname = req.params.usernickname;
 
   const query =
-    "SELECT COUNT(*) AS count FROM posts WHERE user = ? AND status = 'Approved'";
+    "SELECT COUNT(*) AS count FROM posts WHERE user = ? AND status = 'Accepted'";
   pool.query(query, [usernickname], (error, results) => {
     if (error) {
       console.error("Error counting accepted posts for the user", error);
       return res.status(500).json({ error: "Failed to count accepted posts" });
+    }
+
+    const count = results[0].count;
+    res.json({ count });
+  });
+});
+
+// Count in progress posts for a specific user
+app.get("/api/posts/user/:usernickname/inprogress/count", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query =
+    "SELECT COUNT(*) AS count FROM posts WHERE user = ? AND status = 'In Progress'";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error counting in progress posts for the user", error);
+      return res
+        .status(500)
+        .json({ error: "Failed to count in progress posts" });
+    }
+
+    const count = results[0].count;
+    res.json({ count });
+  });
+});
+
+// Count declined posts for a specific user
+app.get("/api/posts/user/:usernickname/declined/count", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query =
+    "SELECT COUNT(*) AS count FROM posts WHERE user = ? AND status = 'Declined'";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error counting declined posts for the user", error);
+      return res.status(500).json({ error: "Failed to count declined posts" });
     }
 
     const count = results[0].count;
