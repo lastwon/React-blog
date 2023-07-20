@@ -14,6 +14,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import DashboardStatsCard from "./DashboardStatsCard";
 import UserPost from "./UserPost";
+import MonthlyPostChart from "./MonthlyPostChart";
 
 const Dashboard = () => {
   const { user } = useAuth0();
@@ -143,9 +144,7 @@ const Dashboard = () => {
                 ))}
               </div>
               <div className="dashboard-overview">
-                <div className="dashboard-chart">
-                  <h3>Overview</h3>
-                </div>
+                <MonthlyPostChart userNickname={user.nickname} />
                 <div className="dashboard-recent-posts">
                   <h3>Your Posts/Articles</h3>
                   <p>Here's a list of your posts/articles!</p>

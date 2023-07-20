@@ -27,6 +27,35 @@ cloudinary.config({
 // Enable CORS
 app.use(cors());
 
+// Monthly chart data for accepted posts
+app.get("/api/posts/user/:usernickname/monthly", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query = `
+    SELECT
+      MONTH(createdAt) AS month,
+      SUM(CASE WHEN status = 'Accepted' THEN 1 ELSE 0 END) AS acceptedCount
+    FROM posts
+    WHERE user = ?
+    GROUP BY MONTH(createdAt)
+    ORDER BY MONTH(createdAt) ASC
+  `;
+
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error(
+        "Error fetching monthly post data from the database",
+        error
+      );
+      return res
+        .status(500)
+        .json({ error: "Failed to fetch monthly post data" });
+    }
+
+    res.json(results);
+  });
+});
+
 // GEtting 5 recent posts from database
 app.get("/api/posts/recent", (req, res) => {
   const query = "SELECT * FROM posts ORDER BY createdAt DESC LIMIT 5";
