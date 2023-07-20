@@ -87,7 +87,7 @@ const CurrentPost = () => {
             <div className="current-post-dateAndAuthor">
               {formattedDate}
               <span className="divider"> | </span>
-              By ADMIN
+              By {post.user}
             </div>
           </div>
           <div className="image-container">

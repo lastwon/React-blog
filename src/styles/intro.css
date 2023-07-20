@@ -76,7 +76,7 @@
 
 .post-thumbnail-container img {
   display: block;
-  height: auto;
+  min-height: 250px;
   width: 100%;
 }
 

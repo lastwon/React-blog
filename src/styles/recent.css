@@ -2,6 +2,19 @@
   padding: 100px 0;
 }
 
+.recent-post:first-child {
+  padding-top: 0;
+  padding-bottom: 50px;
+}
+
+.recent-post {
+  padding: 50px 0;
+}
+
+.recent-post:last-child {
+  padding-bottom: 0;
+}
+
 .section-title {
   border-top: 2px solid #000;
 }

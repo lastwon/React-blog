@@ -1,29 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import seat from "../images/seat.jpg";
-
-const Post = () => {
+const Post = ({ post }) => {
   return (
     <div className="post-item">
       <div className="post-thumbnail-container">
-        <a href="">
-          <img src={seat} alt="seat" />
-        </a>
+        <Link to={`/${post.id}`}>
+          <img src={post.imageUrl} alt="seat" />
+        </Link>
       </div>
       <div className="post-details-container">
         <div className="badge-row-two">
-          <a href="">Home Furnishings</a>
+          <Link to={`/${post.id}`}>{post.category}</Link>
         </div>
-        <a href="">
-          <h4>Twiggy's Modular, Unexpected Seating Can Take Many Forms</h4>
-        </a>
-        <a href="">
-          <p>
-            Designed by Rodolfo Dordoni for Minotti, the individual elements of
-            Twiggy's modular seating are fluid + flexible, free from models +
-            configurations to fit your lifestyle.
-          </p>
-        </a>
+        <Link to={`/${post.id}`}>
+          <h4>{post.title}</h4>
+        </Link>
+        <Link to={`/${post.id}`}>
+          <p>{post.intro}</p>
+        </Link>
       </div>
     </div>
   );

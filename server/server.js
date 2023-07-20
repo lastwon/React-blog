@@ -56,9 +56,50 @@ app.get("/api/posts/user/:usernickname/monthly", (req, res) => {
   });
 });
 
+// Getting top 3 posts for each category
+app.get("/api/posts/category/top3", (req, res) => {
+  const query = "SELECT category FROM posts GROUP BY category";
+
+  pool.query(query, (error, categories) => {
+    if (error) {
+      console.error("Error fetching categories from the database", error);
+      return res.status(500).json({ error: "Failed to fetch categories" });
+    }
+
+    const promises = categories.map(({ category }) => {
+      return new Promise((resolve, reject) => {
+        pool.query(
+          "SELECT * FROM posts WHERE status='Accepted' AND category = ? ORDER BY createdAt DESC LIMIT 3",
+          [category],
+          (error, results) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve({ category, posts: results });
+            }
+          }
+        );
+      });
+    });
+
+    Promise.all(promises)
+      .then((results) => res.json(results))
+      .catch((error) => {
+        console.error(
+          "Error fetching top 3 posts per category from the database",
+          error
+        );
+        return res
+          .status(500)
+          .json({ error: "Failed to fetch top 3 posts per category" });
+      });
+  });
+});
+
 // GEtting 5 recent posts from database
 app.get("/api/posts/recent", (req, res) => {
-  const query = "SELECT * FROM posts ORDER BY createdAt DESC LIMIT 5";
+  const query =
+    "SELECT * FROM posts WHERE status='Accepted' ORDER BY createdAt DESC LIMIT 5";
 
   pool.query(query, (error, results) => {
     if (error) {

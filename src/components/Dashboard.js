@@ -147,9 +147,6 @@ const Dashboard = () => {
                   <Link to={"/create_post"}>Create Post</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard"}>ADMIN Panel</Link>
-                </li>
-                <li>
                   <Link to={"/dashboard"}>Logout</Link>
                 </li>
               </ul>
