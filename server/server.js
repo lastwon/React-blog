@@ -157,6 +157,36 @@ app.get("/api/posts/:postId", (req, res) => {
   });
 });
 
+// Route to accept a post
+app.put("/api/posts/:postId/accept", (req, res) => {
+  const postId = req.params.postId;
+
+  const query = "UPDATE posts SET status = 'Accepted' WHERE id = ?";
+  pool.query(query, [postId], (error, results) => {
+    if (error) {
+      console.error("Error accepting post", error);
+      return res.status(500).json({ error: "Failed to accept post" });
+    }
+
+    res.json({ message: "Post accepted" });
+  });
+});
+
+// Route to decline a post
+app.put("/api/posts/:postId/decline", (req, res) => {
+  const postId = req.params.postId;
+
+  const query = "UPDATE posts SET status = 'Declined' WHERE id = ?";
+  pool.query(query, [postId], (error, results) => {
+    if (error) {
+      console.error("Error declining post", error);
+      return res.status(500).json({ error: "Failed to decline post" });
+    }
+
+    res.json({ message: "Post declined" });
+  });
+});
+
 // Handle POST request to create a new post
 app.post("/api/posts", upload.single("image"), (req, res) => {
   // Extract form data from the request body

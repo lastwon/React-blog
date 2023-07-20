@@ -20,6 +20,7 @@ import CategoryStats from "./CategoryStats";
 const Dashboard = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [userPosts, setUserPosts] = useState([]);
+  const [updatedPosts, setUpdatedPosts] = useState([]);
   const [acceptedPostsCount, setAcceptedPostsCount] = useState(0);
   const [inProgressPostsCount, setInProgressPostsCount] = useState(0);
   const [declinePostsCount, setDeclinedPostsCount] = useState(0);
@@ -45,7 +46,7 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchUserPosts();
     }
-  }, [user?.nickname, isAuthenticated]);
+  }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
     const fetchAcceptedPostsCount = async () => {
@@ -62,7 +63,7 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchAcceptedPostsCount();
     }
-  }, [user?.nickname, isAuthenticated]);
+  }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
     const fetchInProgressPostsCount = async () => {
@@ -79,7 +80,7 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchInProgressPostsCount();
     }
-  }, [user?.nickname, isAuthenticated]);
+  }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
     const fetchInDeclinedPostsCount = async () => {
@@ -96,7 +97,7 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchInDeclinedPostsCount();
     }
-  }, [user?.nickname, isAuthenticated]);
+  }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   const cards = [
     {
@@ -164,13 +165,20 @@ const Dashboard = () => {
                 ))}
               </div>
               <div className="dashboard-overview">
-                <MonthlyPostChart userNickname={user?.nickname} />
+                <MonthlyPostChart
+                  userNickname={user?.nickname}
+                  updatedPosts={updatedPosts}
+                />
                 <CategoryStats userPosts={userPosts} />
               </div>
               <div className="dashboard-recent-posts">
                 <h3>Your Posts/Articles</h3>
                 <p>Here's a list of your posts/articles!</p>
-                <UserPost userPosts={userPosts} />
+                <UserPost
+                  userPosts={userPosts}
+                  updatedPosts={updatedPosts}
+                  setUpdatedPosts={setUpdatedPosts}
+                />
               </div>
             </div>
           </div>

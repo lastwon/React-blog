@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-const MonthlyPostChart = ({ userNickname }) => {
+const MonthlyPostChart = ({ userNickname, updatedPosts }) => {
   const [monthlyPostData, setMonthlyPostData] = useState([]);
 
   const monthNames = [
@@ -51,7 +51,7 @@ const MonthlyPostChart = ({ userNickname }) => {
     };
 
     fetchMonthlyPostData();
-  }, [userNickname]);
+  }, [userNickname, updatedPosts]);
 
   const chartData = {
     labels: monthlyPostData.map((monthData) => monthNames[monthData.month - 1]),

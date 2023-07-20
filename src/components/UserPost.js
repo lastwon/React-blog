@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const UserPost = ({ userPosts }) => {
+import { ToastContainer, Slide } from "react-toastify";
+import { showSuccessToast, showErrorToast } from "./toastUtils";
+
+const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
   const { user } = useAuth0();
 
   const getYear = (dateString) => {
@@ -24,8 +27,47 @@ const UserPost = ({ userPosts }) => {
     return "";
   };
 
+  const handleAccept = async (postId) => {
+    try {
+      // Make an API call to update the post status to "Accepted"
+      await axios.put(`http://localhost:8081/api/posts/${postId}/accept`);
+      // Update the updatedPosts state to reflect the change
+      setUpdatedPosts([...updatedPosts, postId]);
+      showSuccessToast("Post accepted successfully");
+    } catch (error) {
+      console.error("Error accepting post", error);
+      showErrorToast("Error accepting post");
+    }
+  };
+
+  const handleDecline = async (postId) => {
+    try {
+      // Make an API call to update the post status to "Declined"
+      await axios.put(`http://localhost:8081/api/posts/${postId}/decline`);
+      // Update the updatedPosts state to reflect the change
+      setUpdatedPosts([...updatedPosts, postId]);
+      showSuccessToast("Post declined successfully");
+    } catch (error) {
+      console.error("Error declining post", error);
+      showErrorToast("Error declining post");
+    }
+  };
+
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Slide}
+        theme="dark"
+      />
       <table>
         <thead>
           <tr>
@@ -55,8 +97,18 @@ const UserPost = ({ userPosts }) => {
                 {user.email === "admin@admin.com" &&
                 post.status === "In Progress" ? (
                   <>
-                    <button className="btn-accept">Accept</button>
-                    <button className="btn-decline">Decline</button>
+                    <button
+                      className="btn-accept"
+                      onClick={() => handleAccept(post.id)}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="btn-decline"
+                      onClick={() => handleDecline(post.id)}
+                    >
+                      Decline
+                    </button>
                   </>
                 ) : (
                   ""
