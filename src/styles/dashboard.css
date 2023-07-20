@@ -130,6 +130,8 @@
 }
 
 .dashboard-overview {
+  display: flex;
+  gap: 16px;
   margin-top: 16px;
 }
 
@@ -141,7 +143,8 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-chart h3 {
+.dashboard-chart h3,
+.dashboard-category-stats h3 {
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   padding-bottom: 24px;
@@ -213,6 +216,26 @@ table tbody td {
   padding: 2px 10px;
   border: 1px solid rgb(229, 231, 235);
   border-radius: calc(0.5rem - 2px);
+}
+
+.dashboard-category-stats {
+  width: 45%;
+  padding: 24px;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: calc(0.5rem - 2px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-category-stats ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-chart {
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
 }
 
 .pending,

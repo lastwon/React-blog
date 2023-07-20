@@ -15,19 +15,26 @@ import Footer from "./Footer";
 import DashboardStatsCard from "./DashboardStatsCard";
 import UserPost from "./UserPost";
 import MonthlyPostChart from "./MonthlyPostChart";
+import CategoryStats from "./CategoryStats";
 
 const Dashboard = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [userPosts, setUserPosts] = useState([]);
   const [acceptedPostsCount, setAcceptedPostsCount] = useState(0);
   const [inProgressPostsCount, setInProgressPostsCount] = useState(0);
   const [declinePostsCount, setDeclinedPostsCount] = useState(0);
 
   useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      loginWithRedirect(); // Redirect to login page using loginWithRedirect
+    }
+  }, [isLoading, isAuthenticated, loginWithRedirect]);
+
+  useEffect(() => {
     const fetchUserPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user.nickname}`
+          `http://localhost:8081/api/posts/user/${user?.nickname}`
         );
         setUserPosts(response.data);
       } catch (error) {
@@ -35,14 +42,16 @@ const Dashboard = () => {
       }
     };
 
-    fetchUserPosts();
-  }, [user.nickname]);
+    if (isAuthenticated) {
+      fetchUserPosts();
+    }
+  }, [user?.nickname, isAuthenticated]);
 
   useEffect(() => {
     const fetchAcceptedPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user.nickname}/accepted/count`
+          `http://localhost:8081/api/posts/user/${user?.nickname}/accepted/count`
         );
         setAcceptedPostsCount(response.data.count);
       } catch (error) {
@@ -50,14 +59,16 @@ const Dashboard = () => {
       }
     };
 
-    fetchAcceptedPostsCount();
-  }, [user.nickname]);
+    if (isAuthenticated) {
+      fetchAcceptedPostsCount();
+    }
+  }, [user?.nickname, isAuthenticated]);
 
   useEffect(() => {
     const fetchInProgressPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user.nickname}/inprogress/count`
+          `http://localhost:8081/api/posts/user/${user?.nickname}/inprogress/count`
         );
         setInProgressPostsCount(response.data.count);
       } catch (error) {
@@ -65,23 +76,27 @@ const Dashboard = () => {
       }
     };
 
-    fetchInProgressPostsCount();
-  }, [user.nickname]);
+    if (isAuthenticated) {
+      fetchInProgressPostsCount();
+    }
+  }, [user?.nickname, isAuthenticated]);
 
   useEffect(() => {
     const fetchInDeclinedPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user.nickname}/declined/count`
+          `http://localhost:8081/api/posts/user/${user?.nickname}/declined/count`
         );
         setDeclinedPostsCount(response.data.count);
       } catch (error) {
-        console.error("Error fetching in progress posts count", error);
+        console.error("Error fetching declined posts count", error);
       }
     };
 
-    fetchInDeclinedPostsCount();
-  }, [user.nickname]);
+    if (isAuthenticated) {
+      fetchInDeclinedPostsCount();
+    }
+  }, [user?.nickname, isAuthenticated]);
 
   const cards = [
     {
@@ -109,6 +124,11 @@ const Dashboard = () => {
       value: 1,
     },
   ];
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Show loading state while Auth0 is checking authentication status
+  }
+
   return (
     <>
       <Nav />
@@ -144,12 +164,13 @@ const Dashboard = () => {
                 ))}
               </div>
               <div className="dashboard-overview">
-                <MonthlyPostChart userNickname={user.nickname} />
-                <div className="dashboard-recent-posts">
-                  <h3>Your Posts/Articles</h3>
-                  <p>Here's a list of your posts/articles!</p>
-                  <UserPost userPosts={userPosts} />
-                </div>
+                <MonthlyPostChart userNickname={user?.nickname} />
+                <CategoryStats userPosts={userPosts} />
+              </div>
+              <div className="dashboard-recent-posts">
+                <h3>Your Posts/Articles</h3>
+                <p>Here's a list of your posts/articles!</p>
+                <UserPost userPosts={userPosts} />
               </div>
             </div>
           </div>
