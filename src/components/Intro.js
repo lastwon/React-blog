@@ -28,7 +28,7 @@ const Intro = () => {
     <section className="intro">
       <div className="container">
         <div className="section-title">
-          <h2>Recent Posts</h2>
+          <h2>Recent Blogs</h2>
         </div>
         <div className="grid-system">
           {recentPosts.map((post) => (

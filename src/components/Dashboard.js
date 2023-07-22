@@ -103,25 +103,25 @@ const Dashboard = () => {
     {
       id: 1,
       title: "Accepted Posts",
-      icon: <BsCheckAll className="card-icon" />,
+      icon: <BsCheckAll className="card-icon accept" />,
       value: `${acceptedPostsCount} / ${userPosts.length}`,
     },
     {
       id: 2,
       title: "In Progress",
-      icon: <TbProgress className="card-icon" />,
+      icon: <TbProgress className="card-icon progress" />,
       value: inProgressPostsCount,
     },
     {
       id: 3,
       title: "Declined Posts",
-      icon: <CiNoWaitingSign className="card-icon" />,
+      icon: <CiNoWaitingSign className="card-icon decline" />,
       value: declinePostsCount,
     },
     {
       id: 4,
       title: "Total Posts Views",
-      icon: <BsLightningCharge className="card-icon" />,
+      icon: <BsLightningCharge className="card-icon views" />,
       value: 1,
     },
   ];
@@ -145,6 +145,9 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <Link to={"/create_post"}>Create Post</Link>
+                </li>
+                <li>
+                  <Link to={"/edit_profile"}>Change Description</Link>
                 </li>
                 <li>
                   <Link to={"/dashboard"}>Logout</Link>

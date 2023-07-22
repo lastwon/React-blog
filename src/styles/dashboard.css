@@ -96,7 +96,22 @@
 .card-icon {
   width: 20px;
   height: 20px;
-  color: #797981;
+}
+
+.accept {
+  color: #50cd89;
+}
+
+.progress {
+  color: #f2cb0e;
+}
+
+.decline {
+  color: #f1416c;
+}
+
+.views {
+  color: #000;
 }
 
 .card-content-value {

@@ -16,6 +16,11 @@
   margin-bottom: 30px;
 }
 
+.line-container {
+  margin: 80px auto 0 auto;
+  max-width: 1000px;
+}
+
 .decorative-line {
   border-top: 2px solid #000;
   height: 13px;
@@ -62,4 +67,86 @@
   line-height: 32px;
   margin: 0 auto;
   max-width: 800px;
+}
+
+.author-box {
+  margin-top: 100px;
+}
+
+.current-post-author-info {
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 540px;
+  padding: 40px;
+  position: relative;
+}
+
+.current-post-author-info::before {
+  background-image: url(/src/images/left.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  content: "";
+  display: block;
+  height: 29px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 29px;
+}
+
+.current-post-author-info::after {
+  background-image: url(/src/images/right.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  content: "";
+  display: block;
+  height: 29px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 29px;
+}
+
+.current-post-author-info h3 {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.current-post-author-info p {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+
+.trending-blogs {
+  padding-bottom: 100px;
+  padding-top: 60px;
+  background-color: #f7f7f7;
+}
+
+.trend-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.trend-heading .icon {
+  margin-bottom: 10px;
+}
+
+.trend-heading h2 {
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  margin-bottom: 5px;
+}
+
+.trend-blogs {
+  display: flex;
+  gap: 32px;
 }

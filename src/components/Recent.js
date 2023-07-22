@@ -30,17 +30,17 @@ const Recent = () => {
                 {posts.map((post) => (
                   <Post key={post.id} post={post} />
                 ))}
-                <div className="end-btn-container">
-                  <button className="btn-primary large">
-                    More {category} Blogs
-                  </button>
-                </div>
               </div>
               <div className="ad-container"></div>
             </div>
           </div>
         </div>
       ))}
+      <div className="container">
+        <div className="end-btn-container">
+          <button className="btn-primary large">More Recent Blogs</button>
+        </div>
+      </div>
     </section>
   );
 };

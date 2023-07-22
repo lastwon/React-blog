@@ -8,6 +8,8 @@ const cors = require("cors");
 const app = express();
 const upload = multer({ dest: "uploads/" });
 
+app.use(express.json());
+
 // Create a MySQL connection pool
 const pool = mysql.createPool({
   connectionLimit: 10,
@@ -26,6 +28,26 @@ cloudinary.config({
 
 // Enable CORS
 app.use(cors());
+
+// Fetch user profile information
+app.get("/api/users/:usernickname", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query = "SELECT * FROM users WHERE user = ?";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error fetching user profile from the database", error);
+      return res.status(500).json({ error: "Failed to fetch user profile" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "User profile not found" });
+    }
+
+    const user = results[0];
+    res.json(user);
+  });
+});
 
 // Monthly chart data for accepted posts
 app.get("/api/posts/user/:usernickname/monthly", (req, res) => {
@@ -93,6 +115,21 @@ app.get("/api/posts/category/top3", (req, res) => {
           .status(500)
           .json({ error: "Failed to fetch top 3 posts per category" });
       });
+  });
+});
+
+// GEtting 4 trending posts from database
+app.get("/api/posts/trending", (req, res) => {
+  const query =
+    "SELECT * FROM posts WHERE status='Accepted' ORDER BY createdAt DESC LIMIT 4";
+
+  pool.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching trending posts from the database", error);
+      return res.status(500).json({ error: "Failed to fetch trending posts" });
+    }
+
+    res.json(results);
   });
 });
 
@@ -226,6 +263,27 @@ app.put("/api/posts/:postId/decline", (req, res) => {
 
     res.json({ message: "Post declined" });
   });
+});
+
+// Update or insert user profile information
+app.post("/api/users/create-update/:usernickname", (req, res) => {
+  const { description } = req.body;
+  const usernickname = req.params.usernickname;
+
+  const query =
+    "INSERT INTO users (user, description) VALUES (?, ?) ON DUPLICATE KEY UPDATE description = ?";
+  pool.query(
+    query,
+    [usernickname, description, description],
+    (error, results) => {
+      if (error) {
+        console.error("Error updating user profile in the database", error);
+        return res.status(500).json({ error: "Failed to update user profile" });
+      }
+
+      res.json({ message: "User profile updated successfully" });
+    }
+  );
 });
 
 // Handle POST request to create a new post
