@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [acceptedPostsCount, setAcceptedPostsCount] = useState(0);
   const [inProgressPostsCount, setInProgressPostsCount] = useState(0);
   const [declinePostsCount, setDeclinedPostsCount] = useState(0);
+  const [postViews, setPostViews] = useState(0);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -47,6 +48,21 @@ const Dashboard = () => {
       fetchUserPosts();
     }
   }, [user?.nickname, isAuthenticated, updatedPosts]);
+
+  useEffect(() => {
+    const fetchPostViews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8081/api/users/viewstotal/${user?.nickname}`
+        );
+        setPostViews(response.data.totalViews);
+      } catch (error) {
+        console.error("Error fetching blog views", error);
+      }
+    };
+
+    fetchPostViews();
+  }, []);
 
   useEffect(() => {
     const fetchAcceptedPostsCount = async () => {
@@ -102,7 +118,7 @@ const Dashboard = () => {
   const cards = [
     {
       id: 1,
-      title: "Accepted Posts",
+      title: "Accepted Blogs",
       icon: <BsCheckAll className="card-icon accept" />,
       value: `${acceptedPostsCount} / ${userPosts.length}`,
     },
@@ -114,15 +130,15 @@ const Dashboard = () => {
     },
     {
       id: 3,
-      title: "Declined Posts",
+      title: "Declined Blogs",
       icon: <CiNoWaitingSign className="card-icon decline" />,
       value: declinePostsCount,
     },
     {
       id: 4,
-      title: "Total Posts Views",
+      title: "Total Blog Views",
       icon: <BsLightningCharge className="card-icon views" />,
-      value: 1,
+      value: postViews,
     },
   ];
 

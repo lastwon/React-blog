@@ -13,13 +13,14 @@ const CurrentPost = () => {
   const [post, setPost] = useState(null);
   const [description, setDescription] = useState("");
   const [trendingPosts, setTrendingPosts] = useState([]);
+  const [postViews, setPostViews] = useState(0);
   const params = useParams();
   const { user } = useAuth0();
 
   useEffect(() => {
     // Fetch the post information when the component mounts
     fetchPost();
-  }, []);
+  }, [params.postId]);
 
   const fetchPost = async () => {
     try {
@@ -48,19 +49,39 @@ const CurrentPost = () => {
   };
 
   useEffect(() => {
-    const fetchTrendingPosts = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8081/api/posts/trending`
-        );
-        setTrendingPosts(response.data);
-      } catch (error) {
-        console.error("Error fetching trending posts", error);
-      }
-    };
+    fetchPostViews();
+  }, [params.postId]);
 
-    fetchTrendingPosts();
-  }, []);
+  const fetchPostViews = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8081/api/posts/views/${params.postId}`
+      );
+      setPostViews(response.views);
+    } catch (error) {
+      console.error("Error updating post views", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTrendingPosts(params.postId);
+  }, [params.postId]);
+
+  const fetchTrendingPosts = async (currentPostId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8081/api/posts/trending`,
+        {
+          params: {
+            postId: currentPostId,
+          },
+        }
+      );
+      setTrendingPosts(response.data);
+    } catch (error) {
+      console.error("Error fetching trending posts", error);
+    }
+  };
 
   if (!post) {
     return <p>Loading...</p>;

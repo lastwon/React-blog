@@ -29,6 +29,20 @@ cloudinary.config({
 // Enable CORS
 app.use(cors());
 
+// Getting user views from all posts
+app.get("/api/users/viewstotal/:usernickname", (req, res) => {
+  const usernickname = req.params.usernickname;
+
+  const query = "SELECT SUM(views) as totalViews FROM posts WHERE user = ?";
+  pool.query(query, [usernickname], (error, results) => {
+    if (error) {
+      console.error("Error fetching user profile from the database", error);
+      return res.status(500).json({ error: "Failed to fetch user profile" });
+    }
+    res.json(results[0]);
+  });
+});
+
 // Fetch user profile information
 app.get("/api/users/:usernickname", (req, res) => {
   const usernickname = req.params.usernickname;
@@ -118,12 +132,19 @@ app.get("/api/posts/category/top3", (req, res) => {
   });
 });
 
-// GEtting 4 trending posts from database
+// GEtting 4 trending posts from database excluding the current post
 app.get("/api/posts/trending", (req, res) => {
-  const query =
-    "SELECT * FROM posts WHERE status='Accepted' ORDER BY createdAt DESC LIMIT 4";
+  const postIdToExclude = req.query.postId;
 
-  pool.query(query, (error, results) => {
+  const query = `
+    SELECT *
+    FROM posts
+    WHERE status='Accepted' AND id <> ?
+    ORDER BY createdAt DESC
+    LIMIT 4
+  `;
+
+  pool.query(query, [postIdToExclude], (error, results) => {
     if (error) {
       console.error("Error fetching trending posts from the database", error);
       return res.status(500).json({ error: "Failed to fetch trending posts" });
@@ -262,6 +283,20 @@ app.put("/api/posts/:postId/decline", (req, res) => {
     }
 
     res.json({ message: "Post declined" });
+  });
+});
+
+// Update blog views
+app.put("/api/posts/views/:postId", (req, res) => {
+  const postId = req.params.postId;
+
+  const query = "UPDATE posts SET views = views + 1 WHERE id = ?";
+  pool.query(query, [postId], (error, results) => {
+    if (error) {
+      console.error("Error updating post views in the database", error);
+      return res.status(500).json({ error: "Failed to update post views" });
+    }
+    res.json({ message: "Post views updated successfully" });
   });
 });
 
