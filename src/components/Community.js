@@ -52,7 +52,7 @@ const Community = () => {
             </svg>
           </div>
           <h2>Join Our Community</h2>
-          <p>For more modern design follow us on all the socials!</p>
+          <p>For more blogs follow us on all the socials!</p>
           <div className="socials">
             <ul className="row">
               <li>

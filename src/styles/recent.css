@@ -130,6 +130,14 @@
   margin-bottom: 15px;
 }
 
+.post-details-container a:nth-child(3) p {
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+}
+
 .ad-container {
   background: #f7f7f7;
   height: 44px;

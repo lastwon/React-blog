@@ -170,11 +170,12 @@ app.get("/api/posts/recent", (req, res) => {
   });
 });
 
-// getting all specific user posts
+// getting all specific user posts ordered by createdAt and status
 app.get("/api/posts/user/:usernickname", (req, res) => {
   const usernickname = req.params.usernickname;
 
-  const query = "SELECT * FROM posts WHERE user = ?";
+  const query =
+    "SELECT * FROM posts WHERE user = ? ORDER BY status='In Progress' DESC, createdAt DESC";
   pool.query(query, [usernickname], (error, results) => {
     if (error) {
       console.error("Error fetching user posts from the database", error);
@@ -327,7 +328,7 @@ app.post("/api/users/create-update/:usernickname", (req, res) => {
 // Handle POST request to create a new post
 app.post("/api/posts", upload.single("image"), (req, res) => {
   // Extract form data from the request body
-  const { title, intro, body, category } = req.body;
+  const { title, intro, body, category, user } = req.body;
   const imageFile = req.file;
 
   // Upload the image to Cloudinary
@@ -344,7 +345,7 @@ app.post("/api/posts", upload.single("image"), (req, res) => {
     const createdAt = new Date();
 
     // Save the post data to the MySQL database
-    const post = { title, intro, body, category, imageUrl, createdAt };
+    const post = { title, intro, body, category, imageUrl, createdAt, user };
     pool.query("INSERT INTO posts SET ?", post, (error, results) => {
       if (error) {
         console.error("Error saving post to database", error);

@@ -63,13 +63,15 @@ const CreatePost = () => {
         formData.append("body", body);
         formData.append("category", category);
         formData.append("image", image);
-        formData.append("user", user.email);
+        formData.append("user", user.nickname);
 
         await axios.post("http://localhost:8081/api/posts", formData);
 
         console.log("Post created successfully");
         setTitle("");
+        setIntro("");
         setBody("");
+        setCategory("");
         setImage(null);
         showSuccessToast("Post created successfully");
       } catch (error) {
@@ -164,7 +166,7 @@ const CreatePost = () => {
               <option value="Lifestyle">Lifestyle</option>
               <option value="Pets">Pets</option>
               <option value="Fashion">Style + Fashion</option>
-              <option value="Tech">Tech</option>
+              <option value="Tech">Technology</option>
               <option value="Travel">Travel</option>
             </select>
 
