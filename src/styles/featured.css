@@ -61,6 +61,22 @@
   color: #fff;
 }
 
+.btn-cancel {
+  display: inline-block;
+  border: 2px solid #000;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 20px;
+  padding: 13px 26px;
+  text-transform: uppercase;
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .video-container {
   width: 100%;
 }

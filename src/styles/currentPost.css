@@ -150,3 +150,13 @@
   display: flex;
   gap: 32px;
 }
+
+.decline_note {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+  color: red;
+  margin: 20px;
+}

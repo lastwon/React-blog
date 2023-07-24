@@ -33,7 +33,8 @@ app.use(cors());
 app.get("/api/users/viewstotal/:usernickname", (req, res) => {
   const usernickname = req.params.usernickname;
 
-  const query = "SELECT SUM(views) as totalViews FROM posts WHERE user = ?";
+  const query =
+    "SELECT SUM(views) as totalViews FROM posts WHERE user = ? AND status = 'Accepted'";
   pool.query(query, [usernickname], (error, results) => {
     if (error) {
       console.error("Error fetching user profile from the database", error);
@@ -271,12 +272,14 @@ app.put("/api/posts/:postId/accept", (req, res) => {
   });
 });
 
-// Route to decline a post
+// Route to decline a post with a note
 app.put("/api/posts/:postId/decline", (req, res) => {
   const postId = req.params.postId;
+  const declineNote = req.body.note; // Assuming the note is passed in the request body
 
-  const query = "UPDATE posts SET status = 'Declined' WHERE id = ?";
-  pool.query(query, [postId], (error, results) => {
+  const query =
+    "UPDATE posts SET status = 'Declined', decline_note = ? WHERE id = ?";
+  pool.query(query, [declineNote, postId], (error, results) => {
     if (error) {
       console.error("Error declining post", error);
       return res.status(500).json({ error: "Failed to decline post" });

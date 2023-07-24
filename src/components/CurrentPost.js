@@ -144,6 +144,16 @@ const CurrentPost = () => {
               <span className="divider"> | </span>
               By {post.user}
             </div>
+            {post.decline_note ? (
+              <div className="decline_note">
+                <b>
+                  <i>Note:</i>
+                </b>{" "}
+                {post.decline_note}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="image-container">
             <img src={post.imageUrl} alt={post.title} />

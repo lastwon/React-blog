@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 import { ToastContainer, Slide } from "react-toastify";
 import { showSuccessToast, showErrorToast } from "./toastUtils";
 
 const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
   const { user } = useAuth0();
+  const [declineNote, setDeclineNote] = useState("");
+  const [showDeclineForm, setShowDeclineForm] = useState({});
 
   const getYear = (dateString) => {
     const createdAt = new Date(dateString);
@@ -27,6 +30,42 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
     return "";
   };
 
+  const handleNoteChange = (e) => {
+    setDeclineNote(e.target.value);
+  };
+
+  const renderDeclineForm = (postId) => {
+    if (showDeclineForm[postId]) {
+      return (
+        <div className="backdrop">
+          <div className="decline-note-popup">
+            <textarea
+              placeholder="Add a note for declining this blog..."
+              value={declineNote}
+              onChange={handleNoteChange}
+            />
+
+            <div className="buttons">
+              <button
+                className="btn-cancel"
+                onClick={() => setShowDeclineForm(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="btn-primary"
+                onClick={() => handleDecline(postId)}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
   const handleAccept = async (postId) => {
     try {
       // Make an API call to update the post status to "Accepted"
@@ -42,11 +81,15 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
 
   const handleDecline = async (postId) => {
     try {
-      // Make an API call to update the post status to "Declined"
-      await axios.put(`http://localhost:8081/api/posts/${postId}/decline`);
+      // Make an API call to update the post status to "Declined" and include the decline note
+      await axios.put(`http://localhost:8081/api/posts/${postId}/decline`, {
+        note: declineNote,
+      });
       // Update the updatedPosts state to reflect the change
       setUpdatedPosts([...updatedPosts, postId]);
       showSuccessToast("Post declined successfully");
+      // Close the decline form
+      setShowDeclineForm((prevState) => ({ ...prevState, [postId]: false }));
     } catch (error) {
       console.error("Error declining post", error);
       showErrorToast("Error declining post");
@@ -94,6 +137,7 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
               </td>
               <td>{getYear(post.createdAt)}</td>
               <td>
+                {renderDeclineForm(post.id)}
                 {user.email === "admin@admin.com" &&
                 post.status === "In Progress" ? (
                   <>
@@ -105,7 +149,12 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
                     </button>
                     <button
                       className="btn-decline"
-                      onClick={() => handleDecline(post.id)}
+                      onClick={() =>
+                        setShowDeclineForm((prevState) => ({
+                          ...prevState,
+                          [post.id]: true,
+                        }))
+                      }
                     >
                       Decline
                     </button>
@@ -113,7 +162,9 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
                 ) : (
                   ""
                 )}
-                <button className="btn-review">Review</button>
+                <Link to={`/${post.id}`}>
+                  <button className="btn-review">Review</button>
+                </Link>
               </td>
             </tr>
           ))}
