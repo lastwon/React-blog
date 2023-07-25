@@ -1,0 +1,12 @@
+.category-section {
+  margin-bottom: 60px;
+}
+
+.category-section h1 {
+  font-family: "Nunito", sans-serif;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 72px;
+  margin: 35px 0 75px 0;
+}

@@ -24,6 +24,10 @@ const CreatePost = () => {
     setImage(e.target.files[0]);
   };
 
+  const handleEditorChange = (e) => {
+    setBody(e.target.value);
+  };
+
   const validateForm = () => {
     const errors = {};
 
@@ -142,7 +146,7 @@ const CreatePost = () => {
             <textarea
               id="body"
               value={body}
-              onChange={(e) => setBody(e.target.value)}
+              onChange={handleEditorChange}
               required
             />
 

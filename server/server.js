@@ -93,6 +93,20 @@ app.get("/api/posts/user/:usernickname/monthly", (req, res) => {
   });
 });
 
+// Getting posts from specific category
+app.get("/api/posts/categories/:categoryName", (req, res) => {
+  const query = "SELECT * FROM posts WHERE category = ?";
+  const categoryName = req.params.categoryName;
+
+  pool.query(query, [categoryName], (error, results) => {
+    if (error) {
+      console.error("Error fetching category posts from database", error);
+      return res.status(500).json({ error: "Failed to fetch category posts" });
+    }
+    res.json(results);
+  });
+});
+
 // Getting top 3 posts for each category
 app.get("/api/posts/category/top3", (req, res) => {
   const query = "SELECT category FROM posts GROUP BY category";
@@ -164,6 +178,20 @@ app.get("/api/posts/recent", (req, res) => {
     if (error) {
       console.error("Error fetching recent posts from the database", error);
       return res.status(500).json({ error: "Failed to fetch recent posts" });
+    }
+
+    res.json(results);
+  });
+});
+
+// GEtting all accepted posts from database
+app.get("/api/posts/all", (req, res) => {
+  const query = "SELECT * FROM posts WHERE status='Accepted'";
+
+  pool.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching all posts from the database", error);
+      return res.status(500).json({ error: "Failed to fetch all posts" });
     }
 
     res.json(results);
@@ -327,7 +355,6 @@ app.post("/api/users/create-update/:usernickname", (req, res) => {
 
 // Handle POST request to create a new post
 app.post("/api/posts", upload.single("image"), (req, res) => {
-  // Extract form data from the request body
   const { title, intro, body, category, user } = req.body;
   const imageFile = req.file;
 
@@ -344,8 +371,15 @@ app.post("/api/posts", upload.single("image"), (req, res) => {
     // Date, when post created
     const createdAt = new Date();
 
-    // Save the post data to the MySQL database
-    const post = { title, intro, body, category, imageUrl, createdAt, user };
+    const post = {
+      title,
+      intro,
+      body,
+      category,
+      imageUrl,
+      createdAt,
+      user,
+    };
     pool.query("INSERT INTO posts SET ?", post, (error, results) => {
       if (error) {
         console.error("Error saving post to database", error);

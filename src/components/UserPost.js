@@ -128,7 +128,11 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
               <td className="dashboard-post-img-container">
                 <img src={post.imageUrl} alt="img" />
               </td>
-              <td>{post.title}</td>
+              <td>
+                {post.title.length > 55
+                  ? `${post.title.slice(0, 55)}...`
+                  : post.title}
+              </td>
               <td>
                 <div className="dashboard-category">{post.category}</div>
               </td>

@@ -71,6 +71,12 @@
   padding-left: 15px;
 }
 
+.badge-row-two a:hover,
+.post-details-container a:nth-child(2) h4:hover,
+.post-details-container a:nth-child(3) p:hover {
+  color: #505050;
+}
+
 .badge-row-two {
   position: relative;
   text-align: left;

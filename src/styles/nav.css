@@ -31,13 +31,13 @@ header {
 }
 
 .main-header-inner {
+  position: relative;
   align-items: center;
   background: #fff;
   display: flex;
   justify-content: space-between;
   padding: 25px 0;
   position: relative;
-  transition: 0.3s ease-in-out;
 }
 
 .menu-toggles {
@@ -56,13 +56,64 @@ header {
   font-weight: 500;
   line-height: 24px;
   outline: none;
-  padding-right: 22px;
+  border: none;
+  background-color: transparent;
   position: relative;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-toggles button.active::after {
+  bottom: -12px;
+  content: "";
+  display: block;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  background-color: #000;
 }
 
 .menu-toggles a span {
   margin-left: 5px;
+}
+
+.read-menu {
+  position: absolute;
+  top: 100%;
+  background-color: #f7f7f7;
+  padding: 50px 10px;
+  min-width: 15%;
+}
+
+.section-heading {
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 14px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.read-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.read-menu ul li a {
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.read-menu ul li a:hover {
+  color: #505050;
 }
 
 .logo {

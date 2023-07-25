@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "../styles/nav.css";
 
@@ -12,9 +13,15 @@ const Nav = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
+  const [uniqueCategories, setUniqueCategories] = useState([]);
+  const [readMenu, setReadMenu] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleReadMenu = () => {
+    setReadMenu(!readMenu);
   };
 
   useEffect(() => {
@@ -30,8 +37,28 @@ const Nav = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      setReadMenu(false);
+      setOpen(false);
     };
   }, [prevScrollPos]);
+
+  const getCategories = (data) => {
+    const categories = data.map((post) => post.category);
+    setUniqueCategories([...new Set(categories)]);
+  };
+
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:8081/api/posts/all");
+        getCategories(response.data);
+      } catch (error) {
+        console.log("Error fetching all posts", error);
+      }
+    };
+
+    fetchAllPosts();
+  }, []);
 
   const navClass = `${visible ? "shadow" : "nav-hidden"} ${
     window.pageYOffset < 50 ? "no-shadow" : ""
@@ -42,7 +69,10 @@ const Nav = () => {
       <div className="container">
         <div className="main-header-inner">
           <div className="menu-toggles">
-            <a href="">
+            <button
+              className={readMenu ? "active" : ""}
+              onClick={handleReadMenu}
+            >
               Read
               <span>
                 <svg
@@ -59,7 +89,26 @@ const Nav = () => {
                   ></path>
                 </svg>
               </span>
-            </a>
+            </button>
+            {readMenu ? (
+              <div className="read-menu">
+                <h2 className="section-heading">Topics</h2>
+                <ul>
+                  {uniqueCategories.map((category) => (
+                    <li key={category}>
+                      <Link
+                        onClick={() => setReadMenu(false)}
+                        to={`/category/${category}`}
+                      >
+                        {category}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="logo">
             <Link to={"/"}>

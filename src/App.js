@@ -13,6 +13,7 @@ import CreatePost from "./components/CreatePost";
 import CurrentPost from "./components/CurrentPost";
 import EditProfile from "./components/EditProfile";
 import Dashboard from "./components/Dashboard";
+import CategoryPage from "./components/CategoryPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/create_post" element={<CreatePost />} />
         <Route path="/:postId" element={<CurrentPost />} />
         <Route path="/edit_profile" element={<EditProfile />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Routes>
     </Router>
   );

@@ -47,6 +47,10 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchUserPosts();
     }
+
+    return () => {
+      setUserPosts([]);
+    };
   }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
@@ -61,7 +65,9 @@ const Dashboard = () => {
       }
     };
 
-    fetchPostViews();
+    if (isAuthenticated) {
+      fetchPostViews();
+    }
   }, []);
 
   useEffect(() => {
@@ -79,6 +85,10 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchAcceptedPostsCount();
     }
+
+    return () => {
+      setAcceptedPostsCount(0);
+    };
   }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
@@ -114,6 +124,17 @@ const Dashboard = () => {
       fetchInDeclinedPostsCount();
     }
   }, [user?.nickname, isAuthenticated, updatedPosts]);
+
+  useEffect(() => {
+    return () => {
+      setUserPosts([]);
+      setUpdatedPosts([]);
+      setAcceptedPostsCount(0);
+      setInProgressPostsCount(0);
+      setDeclinedPostsCount(0);
+      setPostViews(0);
+    };
+  }, []);
 
   const cards = [
     {

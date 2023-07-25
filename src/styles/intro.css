@@ -64,6 +64,12 @@
   font-weight: 300;
 }
 
+.list-item-featured h4:hover,
+.list-item-featured p:hover,
+.badge-row a:hover {
+  color: #505050;
+}
+
 .post-thumbnail-container {
   position: relative;
   text-align: center;
