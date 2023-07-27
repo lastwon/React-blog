@@ -10,6 +10,7 @@ const Intro = () => {
   useEffect(() => {
     // Fetch the recent posts when the component mounts
     fetchRecentPosts();
+    window.scrollTo(0, 0);
   }, []);
 
   const fetchRecentPosts = async () => {

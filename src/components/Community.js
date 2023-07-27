@@ -34,8 +34,8 @@ const Community = () => {
                     d="M189.363,674.178H178.678v11.471h-7.245V674.178H160.748v-6.761h10.685V656.309h7.245v11.108h10.685Z"
                     fill="#fff"
                     stroke="#1a1818"
-                    stroke-miterlimit="10"
-                    stroke-width="1"
+                    strokeMiterlimit="10"
+                    strokeWidth="1"
                   ></path>
                 </g>
                 <g data-name="Group 20">
@@ -44,8 +44,8 @@ const Community = () => {
                     d="M193.069,670.8H182.384v11.471H175.14V670.8H164.454v-6.761H175.14V652.929h7.244v11.108h10.685Z"
                     fill="#1a1818"
                     stroke="#1a1818"
-                    stroke-miterlimit="10"
-                    stroke-width="1"
+                    strokeMiterlimit="10"
+                    strokeWidth="1"
                   ></path>
                 </g>
               </g>

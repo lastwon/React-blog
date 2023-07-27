@@ -30,8 +30,8 @@ const Footer = () => {
                   transform="translate(-246.388 -703.651)"
                   fill="none"
                   stroke="#fff"
-                  stroke-miterlimit="10"
-                  stroke-width="1"
+                  strokeMiterlimit="10"
+                  strokeWidth="1"
                 ></path>
                 <path
                   data-name="Path 49"
@@ -39,8 +39,8 @@ const Footer = () => {
                   transform="translate(-246.388 -703.651)"
                   fill="#fff"
                   stroke="#fff"
-                  stroke-miterlimit="10"
-                  stroke-width="1"
+                  strokeMiterlimit="10"
+                  strokeWidth="1"
                 ></path>
               </svg>
             </div>

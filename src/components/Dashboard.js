@@ -46,11 +46,8 @@ const Dashboard = () => {
 
     if (isAuthenticated) {
       fetchUserPosts();
+      window.scrollTo(0, 0);
     }
-
-    return () => {
-      setUserPosts([]);
-    };
   }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {
@@ -85,10 +82,6 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchAcceptedPostsCount();
     }
-
-    return () => {
-      setAcceptedPostsCount(0);
-    };
   }, [user?.nickname, isAuthenticated, updatedPosts]);
 
   useEffect(() => {

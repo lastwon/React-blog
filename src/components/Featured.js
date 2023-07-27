@@ -22,8 +22,8 @@ const Featured = () => {
                     transform="translate(0 -1.662)"
                     fill="none"
                     stroke="#1a1818"
-                    stroke-miterlimit="10"
-                    stroke-width="1"
+                    strokeMiterlimit="10"
+                    strokeWidth="1"
                   ></path>
                   <path
                     data-name="Path 39"
@@ -31,8 +31,8 @@ const Featured = () => {
                     transform="translate(-1.087)"
                     fill="#1a1818"
                     stroke="#1a1818"
-                    stroke-miterlimit="10"
-                    stroke-width="1"
+                    strokeMiterlimit="10"
+                    strokeWidth="1"
                   ></path>
                 </g>
               </svg>
@@ -67,10 +67,10 @@ const Featured = () => {
                 src="https://www.youtube.com/embed/c7QuPzJCn5M"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen=""
+                allowFullScreen=""
                 width="560"
                 height="315"
-                frameborder="0"
+                frameBorder="0"
               ></iframe>
             </figure>
           </div>

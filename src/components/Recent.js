@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "../styles/recent.css";
 
@@ -38,7 +39,9 @@ const Recent = () => {
       ))}
       <div className="container">
         <div className="end-btn-container">
-          <button className="btn-primary large">More Recent Blogs</button>
+          <Link to={"/all_blogs"}>
+            <button className="btn-primary large">More Recent Blogs</button>
+          </Link>
         </div>
       </div>
     </section>

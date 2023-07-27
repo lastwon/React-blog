@@ -186,15 +186,33 @@ app.get("/api/posts/recent", (req, res) => {
 
 // GEtting all accepted posts from database
 app.get("/api/posts/all", (req, res) => {
-  const query = "SELECT * FROM posts WHERE status='Accepted'";
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const offset = (page - 1) * limit;
 
-  pool.query(query, (error, results) => {
+  const query =
+    "SELECT * FROM posts WHERE status='Accepted' ORDER BY id LIMIT ? OFFSET ?";
+
+  pool.query(query, [limit, offset], (error, results) => {
     if (error) {
       console.error("Error fetching all posts from the database", error);
       return res.status(500).json({ error: "Failed to fetch all posts" });
     }
 
-    res.json(results);
+    pool.query(
+      "SELECT COUNT(*) AS count FROM posts WHERE status='Accepted'",
+      (err, countResult) => {
+        if (err) {
+          console.error("Error counting all posts from the database", err);
+          return res.status(500).json({ error: "Failed to count all posts" });
+        }
+
+        res.json({
+          posts: results,
+          totalCount: countResult[0].count,
+        });
+      }
+    );
   });
 });
 
