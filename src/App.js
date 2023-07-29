@@ -15,6 +15,7 @@ import EditProfile from "./components/EditProfile";
 import Dashboard from "./components/Dashboard";
 import CategoryPage from "./components/CategoryPage";
 import AllBlogs from "./components/AllBlogs";
+import FeaturedVideo from "./components/FeaturedViedo";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/edit_profile" element={<EditProfile />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/all_blogs" element={<AllBlogs />} />
+        <Route path="/featured_video" element={<FeaturedVideo />} />
       </Routes>
     </Router>
   );

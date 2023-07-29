@@ -168,6 +168,13 @@ const Dashboard = () => {
                 <li>
                   <Link to={"/edit_profile"}>Change Description</Link>
                 </li>
+                {user.nickname === "admin" && isAuthenticated ? (
+                  <li>
+                    <Link to={"/featured_video"}>Change Featured Video</Link>
+                  </li>
+                ) : (
+                  ""
+                )}
                 <li>
                   <Link to={"/dashboard"}>Logout</Link>
                 </li>

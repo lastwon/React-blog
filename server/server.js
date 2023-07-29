@@ -147,6 +147,19 @@ app.get("/api/posts/category/top3", (req, res) => {
   });
 });
 
+// Getting featured video information
+app.get("/api/featured", (req, res) => {
+  const query = "SELECT * FROM featured_video";
+
+  pool.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching featured video from database", error);
+      return res.status(500).json({ error: "Failed to fetch featured video" });
+    }
+    res.json(results);
+  });
+});
+
 // GEtting 4 trending posts from database excluding the current post
 app.get("/api/posts/trending", (req, res) => {
   const postIdToExclude = req.query.postId;
@@ -301,6 +314,23 @@ app.get("/api/posts/:postId", (req, res) => {
 
     const post = results[0];
     res.json(post);
+  });
+});
+
+// Updating featured video
+app.put("/api/featured/update", (req, res) => {
+  const { title, description, link } = req.body;
+
+  const query =
+    "UPDATE featured_video SET title = ?, description = ?, link = ?";
+  const values = [title, description, link];
+  pool.query(query, values, (error, results) => {
+    if (error) {
+      console.error("Error updating featured video", error);
+      return res.status(500).json({ error: "Failed to update featured video" });
+    }
+
+    res.json({ message: "Featured video updated!" });
   });
 });
 
