@@ -51,7 +51,7 @@ const Nav = () => {
     const fetchAllPosts = async () => {
       try {
         const response = await axios.get("http://localhost:8081/api/posts/all");
-        getCategories(response.data);
+        getCategories(response.data.posts);
       } catch (error) {
         console.log("Error fetching all posts", error);
       }

@@ -118,17 +118,6 @@ const Dashboard = () => {
     }
   }, [user?.nickname, isAuthenticated, updatedPosts]);
 
-  useEffect(() => {
-    return () => {
-      setUserPosts([]);
-      setUpdatedPosts([]);
-      setAcceptedPostsCount(0);
-      setInProgressPostsCount(0);
-      setDeclinedPostsCount(0);
-      setPostViews(0);
-    };
-  }, []);
-
   const cards = [
     {
       id: 1,

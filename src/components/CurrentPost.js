@@ -20,6 +20,7 @@ const CurrentPost = () => {
   useEffect(() => {
     // Fetch the post information when the component mounts
     fetchPost();
+    window.scrollTo(0, 0);
   }, [params.postId]);
 
   const fetchPost = async () => {
