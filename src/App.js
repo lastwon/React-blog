@@ -15,7 +15,7 @@ import EditProfile from "./components/EditProfile";
 import Dashboard from "./components/Dashboard";
 import CategoryPage from "./components/CategoryPage";
 import AllBlogs from "./components/AllBlogs";
-import FeaturedVideo from "./components/FeaturedViedo";
+import FeaturedVideo from "./components/FeaturedVideo";
 
 function App() {
   return (

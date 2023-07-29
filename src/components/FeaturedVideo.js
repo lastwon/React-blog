@@ -59,7 +59,7 @@ const FeaturedVideo = () => {
             <input
               type="text"
               id="title"
-              placeholder="Display at the end of your each post"
+              placeholder="Featured video title"
               value={featuredVideo.title}
               onChange={(e) =>
                 setFeaturedVideo({ ...featuredVideo, title: e.target.value })
@@ -86,7 +86,7 @@ const FeaturedVideo = () => {
             <input
               type="text"
               id="link"
-              placeholder="Video link (youtube recommended)"
+              placeholder="Video link embed (youtube recommended) e.g. https://www.youtube.com/embed/IoZri9hq7z4"
               value={featuredVideo.link}
               onChange={(e) =>
                 setFeaturedVideo({ ...featuredVideo, link: e.target.value })
