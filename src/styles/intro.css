@@ -134,3 +134,18 @@
   left: 0;
   right: 5px;
 }
+
+@media (max-width: 991px) {
+  .grid-system {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-item-featured {
+    margin-bottom: 65px;
+  }
+
+  .grid-system .list-item-featured:nth-child(3) {
+    padding: 0;
+  }
+}

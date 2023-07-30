@@ -168,3 +168,40 @@
   gap: 16px;
   margin-top: -30px;
 }
+
+@media (max-width: 991px) {
+  .recent-posts {
+    padding: 50px 0;
+  }
+
+  .post-items {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .post-item {
+    flex-direction: column;
+  }
+
+  .ad-container {
+    display: none;
+  }
+
+  .post-item .post-thumbnail-container {
+    flex-basis: 0;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .post-details-container img {
+    max-width: 100px;
+  }
+
+  .post-details-container {
+    padding-left: 5px;
+  }
+
+  .end-btn-container {
+    max-width: 100%;
+  }
+}

@@ -160,3 +160,14 @@
   color: red;
   margin: 20px;
 }
+
+@media (max-width: 991px) {
+  .current-post-intro h1 {
+    font-size: 40px;
+  }
+
+  .trend-blogs {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

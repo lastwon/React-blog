@@ -80,3 +80,13 @@
   max-width: 100%;
   max-height: 100%;
 }
+
+@media (max-width: 991px) {
+  .flex-img {
+    height: auto;
+  }
+
+  .socials ul li:not(:last-of-type) {
+    margin-right: 15px;
+  }
+}

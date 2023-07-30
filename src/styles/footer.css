@@ -129,3 +129,36 @@ hr {
   font-size: 13px;
   font-weight: 300;
 }
+
+@media (max-width: 991px) {
+  footer {
+    padding: 60px 0;
+  }
+
+  footer .row {
+    flex-direction: column;
+  }
+
+  .footer-left {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .footer-right {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .footer-socials {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  .socials {
+    margin: 0 auto;
+  }
+
+  .socials .row {
+    flex-direction: row;
+  }
+}
