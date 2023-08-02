@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer, Slide } from "react-toastify";
 
 import "../styles/footer.css";
 
@@ -14,6 +15,19 @@ import tiktok from "../images/tiktok.svg";
 const Footer = () => {
   return (
     <footer>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Slide}
+        theme="dark"
+      />
       <div className="container">
         <div className="row">
           <div className="row column footer-left">
@@ -59,7 +73,6 @@ const Footer = () => {
                 <div className="form">
                   <Form />
                 </div>
-                <button className="btn-sign-up">Sign up</button>
               </div>
             </div>
           </div>

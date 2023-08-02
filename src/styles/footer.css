@@ -46,6 +46,10 @@ footer {
   margin-bottom: 21px;
 }
 
+form button {
+  margin-top: 21px;
+}
+
 .form input {
   font-family: "Nunito", sans-serif;
   font-weight: 400;
