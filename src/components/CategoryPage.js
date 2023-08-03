@@ -16,7 +16,7 @@ const CategoryPage = () => {
     const fecthCategoryPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/categories/${params.categoryName}`
+          `https://blog-m671.onrender.com/api/posts/categories/${params.categoryName}`
         );
         setPost(response.data);
       } catch (error) {

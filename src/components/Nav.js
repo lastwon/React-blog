@@ -50,7 +50,9 @@ const Nav = () => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/api/posts/all");
+        const response = await axios.get(
+          "https://blog-m671.onrender.com/api/posts/all"
+        );
         getCategories(response.data.posts);
       } catch (error) {
         console.log("Error fetching all posts", error);

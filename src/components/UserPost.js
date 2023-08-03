@@ -69,7 +69,9 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
   const handleAccept = async (postId) => {
     try {
       // Make an API call to update the post status to "Accepted"
-      await axios.put(`http://localhost:8081/api/posts/${postId}/accept`);
+      await axios.put(
+        `https://blog-m671.onrender.com/api/posts/${postId}/accept`
+      );
       // Update the updatedPosts state to reflect the change
       setUpdatedPosts([...updatedPosts, postId]);
       showSuccessToast("Post accepted successfully");
@@ -82,9 +84,12 @@ const UserPost = ({ userPosts, updatedPosts, setUpdatedPosts }) => {
   const handleDecline = async (postId) => {
     try {
       // Make an API call to update the post status to "Declined" and include the decline note
-      await axios.put(`http://localhost:8081/api/posts/${postId}/decline`, {
-        note: declineNote,
-      });
+      await axios.put(
+        `https://blog-m671.onrender.com/api/posts/${postId}/decline`,
+        {
+          note: declineNote,
+        }
+      );
       // Update the updatedPosts state to reflect the change
       setUpdatedPosts([...updatedPosts, postId]);
       showSuccessToast("Post declined successfully");

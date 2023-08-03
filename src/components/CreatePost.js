@@ -69,7 +69,7 @@ const CreatePost = () => {
         formData.append("image", image);
         formData.append("user", user.nickname);
 
-        await axios.post("http://localhost:8081/api/posts", formData);
+        await axios.post("https://blog-m671.onrender.com/api/posts", formData);
 
         console.log("Post created successfully");
         setTitle("");

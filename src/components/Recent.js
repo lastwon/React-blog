@@ -11,7 +11,7 @@ const Recent = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/posts/category/top3")
+      .get("https://blog-m671.onrender.com/api/posts/category/top3")
       .then((response) => {
         setCategories(response.data);
       })

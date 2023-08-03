@@ -36,7 +36,7 @@ const Dashboard = () => {
     const fetchUserPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user?.nickname}`
+          `https://blog-m671.onrender.com/api/posts/user/${user?.nickname}`
         );
         setUserPosts(response.data);
       } catch (error) {
@@ -54,7 +54,7 @@ const Dashboard = () => {
     const fetchPostViews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/users/viewstotal/${user?.nickname}`
+          `https://blog-m671.onrender.com/api/users/viewstotal/${user?.nickname}`
         );
         setPostViews(response.data.totalViews);
       } catch (error) {
@@ -71,7 +71,7 @@ const Dashboard = () => {
     const fetchAcceptedPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user?.nickname}/accepted/count`
+          `https://blog-m671.onrender.com/api/posts/user/${user?.nickname}/accepted/count`
         );
         setAcceptedPostsCount(response.data.count);
       } catch (error) {
@@ -88,7 +88,7 @@ const Dashboard = () => {
     const fetchInProgressPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user?.nickname}/inprogress/count`
+          `https://blog-m671.onrender.com/api/posts/user/${user?.nickname}/inprogress/count`
         );
         setInProgressPostsCount(response.data.count);
       } catch (error) {
@@ -105,7 +105,7 @@ const Dashboard = () => {
     const fetchInDeclinedPostsCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${user?.nickname}/declined/count`
+          `https://blog-m671.onrender.com/api/posts/user/${user?.nickname}/declined/count`
         );
         setDeclinedPostsCount(response.data.count);
       } catch (error) {

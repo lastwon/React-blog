@@ -18,7 +18,7 @@ const EditProfile = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/users/${user.nickname}`
+          `https://blog-m671.onrender.com/api/users/${user.nickname}`
         );
         setDescription(response.data.description || "");
       } catch (error) {
@@ -36,7 +36,7 @@ const EditProfile = () => {
     // Save or update the user's description in the server
     try {
       await axios.post(
-        `http://localhost:8081/api/users/create-update/${user.nickname}`,
+        `https://blog-m671.onrender.com/api/users/create-update/${user.nickname}`,
         {
           description,
         }

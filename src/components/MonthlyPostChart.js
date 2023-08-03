@@ -42,7 +42,7 @@ const MonthlyPostChart = ({ userNickname, updatedPosts }) => {
     const fetchMonthlyPostData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/user/${userNickname}/monthly`
+          `https://blog-m671.onrender.com/api/posts/user/${userNickname}/monthly`
         );
         setMonthlyPostData(response.data);
       } catch (error) {

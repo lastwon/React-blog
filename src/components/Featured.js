@@ -8,7 +8,9 @@ const Featured = () => {
 
   useEffect(() => {
     const fetchFeaturedVideo = async () => {
-      const response = await axios.get("http://localhost:8081/api/featured");
+      const response = await axios.get(
+        "https://blog-m671.onrender.com/api/featured"
+      );
       setFeaturedVideo(response.data);
     };
 

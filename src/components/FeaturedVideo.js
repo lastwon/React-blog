@@ -24,7 +24,7 @@ const FeaturedVideo = () => {
     // Send the data to your server's API endpoint
     try {
       const response = await axios.put(
-        "http://localhost:8081/api/featured/update",
+        "https://blog-m671.onrender.com/api/featured/update",
         featuredVideo
       );
       showSuccessToast("Featured video updated successfully!");

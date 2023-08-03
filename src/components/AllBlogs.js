@@ -16,7 +16,7 @@ const AllBlogs = () => {
     const fetchAllPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/posts/all?page=${page}&limit=${PAGE_SIZE}`
+          `https://blog-m671.onrender.com/api/posts/all?page=${page}&limit=${PAGE_SIZE}`
         );
         setPost(response.data.posts);
         setTotalPosts(response.data.totalCount);

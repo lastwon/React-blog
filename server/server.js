@@ -7,9 +7,6 @@ const cors = require("cors");
 const path = require("path");
 const url = require("url");
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
 const upload = multer({ dest: "uploads/" });
 

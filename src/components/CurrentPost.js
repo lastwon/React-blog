@@ -26,7 +26,7 @@ const CurrentPost = () => {
   const fetchPost = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/api/posts/${params.postId}`
+        `https://blog-m671.onrender.com/api/posts/${params.postId}`
       );
       const { data } = response;
       setPost(data);
@@ -41,7 +41,7 @@ const CurrentPost = () => {
   const fetchUserProfile = async (username) => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/api/users/${username}`
+        `https://blog-m671.onrender.com/api/users/${username}`
       );
       setDescription(response.data.description || "");
     } catch (error) {
@@ -56,7 +56,7 @@ const CurrentPost = () => {
   const fetchPostViews = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:8081/api/posts/views/${params.postId}`
+        `https://blog-m671.onrender.com/api/posts/views/${params.postId}`
       );
       setPostViews(response.views);
     } catch (error) {
@@ -71,7 +71,7 @@ const CurrentPost = () => {
   const fetchTrendingPosts = async (currentPostId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/api/posts/trending`,
+        `https://blog-m671.onrender.com/api/posts/trending`,
         {
           params: {
             postId: currentPostId,
