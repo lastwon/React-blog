@@ -4,11 +4,19 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const mysql = require("mysql");
 const cors = require("cors");
+const path = require("path");
+const url = require("url");
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const upload = multer({ dest: "uploads/" });
 
 app.use(express.json());
+
+// Serve static files from the React app
+app.use(express.static(path.resolve(__dirname, "public")));
 
 // Create a MySQL connection pool
 const pool = mysql.createPool({
@@ -442,6 +450,13 @@ app.post("/api/posts", upload.single("image"), (req, res) => {
 });
 
 // Start the server
-app.listen(8081, () => {
-  console.log("Server is running on port 8081");
+const port = process.env.PORT || 8081;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
+
+export default app;
