@@ -114,7 +114,8 @@ app.get("/api/posts/categories/:categoryName", (req, res) => {
 
 // Getting top 3 posts for each category
 app.get("/api/posts/category/top3", (req, res) => {
-  const query = "SELECT category FROM posts GROUP BY category";
+  const query =
+    "SELECT category FROM posts WHERE status = 'Accepted' GROUP BY category";
 
   pool.query(query, (error, categories) => {
     if (error) {
