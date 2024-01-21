@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+EXPRESSO - A Robust Blog and Article Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to EXPRESSO, an advanced blog and article platform where users can post content and view statistics. This project has been developed utilizing modern technologies such as React, Node.js, Express.js, and MySQL. EXPRESSO's robust features and elegant design ensure a secure, engaging, and user-friendly experience for writers and readers alike.
 
-## Available Scripts
+![Blog1](https://imgtr.ee/images/2023/08/05/d9d05d2b08801bcd4204cc41f10d7120.jpeg)
 
-In the project directory, you can run:
+![Blog2](https://imgtr.ee/images/2023/08/05/e224a00639647184adbd43971a915dab.jpeg)
 
-### `npm start`
+![Blog3](https://imgtr.ee/images/2023/08/05/368c640ad2659a6582a00049341bdb3e.jpeg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Blog4](https://imgtr.ee/images/2023/08/05/b893e4762cdd4e3516c1ad3a92757cb0.jpeg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Key Features:
+1. Secure User Authentication with Auth0
+EXPRESSO employs Auth0, a leading identity management service for quick and reliable user registration and login, ensuring data security and a user-friendly experience.
+Comprehensive User Dashboard
 
-### `npm test`
+2. The user dashboard on EXPRESSO is comprehensive and interactive. It allows users to view the number of posts they have published, the status of these posts, viewer statistics, personal information modification, main page featured video change, a graphical representation of categories and post information, posts status.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Administrator Privileges
+We have implemented administrative rights that enable the approval or rejection of user posts. A rejection requires the addition of a reason, visible to the user who created the post, fostering transparent communication.
+Image Processing with Cloudinary
 
-### `npm run build`
+4. EXPRESSO utilizes Cloudinary for seamless cloud-based storage and management of images within posts. This means users can easily add visual elements to their content, enhancing engagement and visual appeal.
+Robust API Endpoints
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. EXPRESSO features robust API endpoints to cater to a variety of use cases. We use MySQL for data storage and Axios for handling all requests, demonstrating our proficiency in backend development.
+Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To get a local copy up and running, follow these simple steps:
+   1. Clone the repo: git clone https://github.com/lastwon/React-blog.git
+   2. Install NPM packages: root folder npm install and in server folder npm install
+   3. Set up your .env file with your Auth0 and Cloudinary credentials in server foler
+   4. Run the app: npm start
+   5. Run the server: node server.js
