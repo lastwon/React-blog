@@ -16,7 +16,7 @@ const Intro = () => {
   const fetchRecentPosts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/posts/recent"
+        "https://blog-m671.onrender.com/api/posts/recent"
       );
       const { data } = response;
       setRecentPosts(data);
